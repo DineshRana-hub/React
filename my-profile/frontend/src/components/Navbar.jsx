@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {styles} from '../styles'
 import { Link } from 'react-router-dom'
 import { navLinks } from '../constants'
-import {logo, menu, close} from '../assets'
+import {profilepic, menu, close} from '../assets'
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -41,10 +41,11 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
+          <img src={profilepic}         alt='profile-pic' 
+            className='w-20 h-20 object-cover rounded-full border-2 border-white'/>
+          <p className='text-white text-[25px] font-bold cursor-pointer flex '>
             Dinesh &nbsp;
-            <span className='sm:block hidden'> | JavaScript Mastery</span>
+          
           </p>
         </Link>
 
