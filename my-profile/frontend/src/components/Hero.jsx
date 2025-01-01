@@ -1,4 +1,9 @@
 import React from 'react'
+import { styles} from '../styles'
+import { ComputersCanvas } from './canvas'
+import { motion } from "framer-motion";
+
+
 
 const Hero = () => {
   return (
@@ -13,7 +18,7 @@ const Hero = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#915EFF]'>Adrian</span>
+            Hi, I'm <span className='text-[#915EFF]'>Dinesh</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             I develop 3D visuals, user <br className='sm:block hidden' />
@@ -42,7 +47,8 @@ const Hero = () => {
         </a>
       </div>
     </section>
-  );
+    
+  )
 }
 
 export default Hero
