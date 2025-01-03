@@ -12,6 +12,7 @@ const Contact = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    subject:"",
     message: "",
   });
 
@@ -30,19 +31,21 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+  
 
     emailjs
       .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        "service_eokflpd",
+        "template_j42yqnn",
         {
           from_name: form.name,
           to_name: "Dinesh",
           from_email: form.email,
           to_email: "dr671933@gmail.com",
+          subject:form.subject,
           message: form.message,
         },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        "QMXqaFoyQ96rJB1aU"
       )
       .then(
         () => {
@@ -52,6 +55,7 @@ const Contact = () => {
           setForm({
             name: "",
             email: "",
+            subject:"",
             message: "",
           });
         },
@@ -78,7 +82,7 @@ const Contact = () => {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
+          className='mt-10 flex flex-col gap-6'
         >
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Name</span>
@@ -101,7 +105,24 @@ const Contact = () => {
               placeholder="What's your web address?"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
+
           </label>
+          <label className='flex flex-col'>
+  <span className='text-white font-medium mb-4'>For</span>
+  <select
+    name='subject'
+    value={form.subject}
+    onChange={handleChange}
+    className='bg-tertiary py-4 px-6 text-secondary text-white rounded-lg outline-none border-none font-medium'
+  >
+    <option value="" disabled>Select a Subject</option>
+    <option value="Web development">Website</option>
+    <option value="E-commerce">E-Commerce development</option>
+    <option value="Desktop Development">Desktop development</option>
+    <option value="mobile app">Mobile app Development</option>
+  </select>
+</label>
+
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Message</span>
             <textarea
