@@ -5,29 +5,30 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
-  const computer = useGLTF("./desktop_pc/scene.gltf");
+  const computer = useGLTF("./desktop_pc/scene_compressed.gltf"); // Use the compressed model
 
   return (
     <mesh>
-      <hemisphereLight intensity={0.15} groundColor='black' />
+      <hemisphereLight intensity={0.1} groundColor='black' />
       <spotLight
         position={[-20, 50, 10]}
-        angle={0.12}
-        penumbra={1}
-        intensity={1}
+        angle={0.15} // Adjust angle for a simpler lighting setup
+        penumbra={0.8} // Reduce penumbra
+        intensity={isMobile ? 0.8 : 1} // Reduce intensity on mobile
         castShadow
-        shadow-mapSize={1024}
+        shadow-mapSize={isMobile ? 512 : 1024} // Smaller shadow map for mobile
       />
-      <pointLight intensity={1} />
+      <pointLight intensity={isMobile ? 0.8 : 1} /> {/* Dim lighting for mobile */}
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
+        scale={isMobile ? 0.5 : 0.75} // Smaller scale for mobile
+        position={isMobile ? [0, -2.5, -2.2] : [0, -3.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
   );
 };
+
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
